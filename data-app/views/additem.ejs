@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<script>
+    function showMap () {
+        document.getElementById
+    }
+</script>
+<body>
+    <header>
+        <h1>Add A Bench</h1>
+        <nav>
+            <a href="#">Add entry</a>
+        </nav>
+    </header>
+
+    <main>
+        <form href="/entry" method="POST">
+        <% errors.forEach(error => { %>
+            <p class="notice"><%= error %></p>
+        <% })%>
+            <fieldset>
+                <legend>Add Bench</legend>
+
+                <label for="benchnum"><small>Bench Number</small></label>
+                <input type="number" id="benchnum" name="benchnum" autocomplete="off">
+
+                <label for="available"><small>Available?</small></label>
+                <select id="available" name="available">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+
+                <label for="park"><small>Park</small></label>
+                <select id="park" name="park">
+                    <option value="Frick">Frick</option>
+                    <option value="Allegheney Commons">Allegheny Commons</option>
+                    <option value="Schenley">Schenley</option>
+                    <option value="Mellon">Mellon Park</option>
+                    <option value="Cliffside">Cliffside</option>
+                    <option value="Highland">Highland</option>
+                    <option value="Riverview">Riverview</option>
+                    <option value="FEC">FEC</option>
+                    <option value="Flagstaff">Flagstaff</option>
+                </select>
+
+                <label for="imoiho"><small>IMO or IHO</small></label>
+                <select id="imoiho" name="imoiho">
+                    <option value="none">None</option>
+                    <option value="imo">IMO</option>
+                    <option value="iho">IHO</option>
+                </select>
+
+                <label for="honoree"><small>Honoree's Name</small></label>
+                <input type="text" id="honoree" name="honoree" autocomplete="off">
+
+                <label for="donor"><small>Donated By</small></label>
+                <input type="text" id="donor" name="donor" autocomplete="off">
+
+                <label for="constid"><small>Donor's Constituent ID</small></label>
+                <input type="number" id="constid" name="constid" autocomplete="off">
+
+                <label for="inscription"><small>Inscription</small></label>
+                <input type="text" id="inscription" name="inscription" autocomplete="off">
+
+                <label for="giftamt"><small>Gift Amount</small></label>
+                <input type="number" id="giftamt" name="giftamt" min="0" max ="1000000000" step="0.01" autocomplete="off">
+
+                <label for="giftdate"><small>Gift Date</small></label>
+                <input type="date" id="giftdate" name="giftdate" autocomplete="off">
+
+                <label for="infull"><small>Paid in full?</small></label>
+                <select id="infull" name="infull">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+
+                <label for="notes"><small>Notes</small></label>
+                <input type="text" id="notes" name="notes" autocomplete="off">
+
+                <label for="x"><small>X</small></label>
+                <input type="number" id="x" name="x" min="0" max="1000" step="1">
+
+                <label for="y"><small>Y</small></label>
+                <input type="number" id="y" name="y" min="0" max="1000" step="1">
+
+                <br />
+                <button>Submit</button> <a href="/">Cancel</a>
+            </fieldset>
+        </form>
+    </main>
+
+    <footer>
+        <small>Pittsburgh Parks</small>
+    </footer>
+</body>
+</html>

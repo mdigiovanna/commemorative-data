@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+    <main>
+        <h1><%= bench.park %> #<%= bench.benchnum %></h2>
+            <article>
+                <b>Availability:</b>
+                <% if(bench.available === 1){ %>
+                    Available
+                    <br>
+                    <br><b>Notes:</b><article>
+                        <%= bench.notes %>
+                    </article>
+                <% }
+                else { %>
+                    Sold
+                    <br>
+                    <b>In 
+                        <% if(bench.imoiho === 'iho') { %>
+                            Honor Of:
+                        <% } else { %>
+                            Memory Of:
+                        <% } %>
+                    </b> <%= bench.honoree %>
+                    <br> <b>Donated By:</b> <%= bench.donor %> [Constituent ID: <%= bench.constid %>]
+                    <br><br><b>Inscription:</b><article>
+                            <%= bench.inscription %>
+                        </article>
+                    <br><b>Notes:</b><article>
+                            <%= bench.notes %>
+                        </article>
+                    <br> <small>Bought on <%= bench.giftdate %> for $<%= bench.giftamt %></small>
+                <% } %>
+                <br> Located at <%= bench.x %>, <%= bench.y %>
+            </article>
+            
+            <form action="/bench/delete/<%= bench.id %>" method="POST">
+                <button>Delete Bench</button>
+            </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+    <header>
+        <h1>Commemorative Benches Database</h1>
+        <nav>
+            <a href="/entry">Add Bench</a>
+        </nav>
+    </header>
+
+<!--
+    allParks array and byPark SQL command sent in from server.js;
+    for each park in allParks, created an unordered list and use byPark.all 
+    to get benches in that park -> for each park, loop through the benches 
+    and provide each as a list element with a link to the bench's page 
+-->
+
+    <main>
+        <% allParks.forEach(park => {%>
+        <h3><%= park %></h3>
+            <article>      
+<!--         <img src='./<%= park %>.jpg' alt="<%= park %> Map" usemap="#<%= park %>map">-->   
+
+                <div style="display: inline-block; position:relative; text-align:center">
+                    <img src='./<%= park %>.jpg' alt="<%= park %> Map">
+                    <% byPark.all(park).forEach (bench => {%>
+                        <a href="/bench/<%= bench.id %>">
+                            <div
+                            style="width: 0;
+                            height: 0;
+                            border-left: 10px solid transparent;
+                            border-right: 10px solid transparent;
+                            border-bottom: 20px solid #d12e2e;
+                            left: <%= bench.x -10%>;
+                            top: <%= bench.y -10%>;
+                            position: absolute"
+                        ></div
+                        ></a>
+                    <%})%>
+                </div>
+                
+<!--                <map name="<%= park %>map">
+                    <% byPark.all(park).forEach (bench => {%>
+                        <area shape="circle" class="parallelogram" coords="<%= bench.x %>, <%= bench.y %>, 20" href="/bench/<%= bench.id %>">
+                    <%})%>
+                </map>
+-->
+                <ul>
+                    <% byPark.all(park).forEach (bench => {%>
+                    <li><a href="/bench/<%= bench.id %>"><%= bench.park %> #<%= bench.benchnum %></a></li>
+                    <%})%>
+                </ul>
+            
+            </article>
+        <%})%>
+    </main>
+
+    <footer>
+        <small>Pittsburgh Parks</small>
+    </footer>
+</body>
+</html>
