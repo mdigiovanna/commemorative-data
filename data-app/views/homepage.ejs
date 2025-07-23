@@ -10,6 +10,7 @@
         <h1>Commemorative Benches Database</h1>
         <nav>
             <a href="/entry">Add Bench</a>
+            <a href="/maps">View Maps</a>
         </nav>
     </header>
 
@@ -24,8 +25,7 @@
         <% allParks.forEach(park => {%>
         <h3><%= park %></h3>
             <article>      
-<!--         <img src='./<%= park %>.jpg' alt="<%= park %> Map" usemap="#<%= park %>map">-->   
-
+<!--     
                 <div style="display: inline-block; position:relative; text-align:center">
                     <img src='./<%= park %>.jpg' alt="<%= park %> Map">
                     <% byPark.all(park).forEach (bench => {%>
@@ -43,13 +43,8 @@
                         ></a>
                     <%})%>
                 </div>
-                
-<!--                <map name="<%= park %>map">
-                    <% byPark.all(park).forEach (bench => {%>
-                        <area shape="circle" class="parallelogram" coords="<%= bench.x %>, <%= bench.y %>, 20" href="/bench/<%= bench.id %>">
-                    <%})%>
-                </map>
 -->
+
                 <ul>
                     <% byPark.all(park).forEach (bench => {%>
                     <li><a href="/bench/<%= bench.id %>"><%= bench.park %> #<%= bench.benchnum %></a></li>

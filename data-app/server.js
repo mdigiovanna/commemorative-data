@@ -30,4 +30,7 @@ app.use("/entry", entryRoutes)
 const benchRoutes = require('./routes/benchRoutes.js') 
 app.use("/bench", benchRoutes)
 
+const mapRoutes = require('./routes/mapRoutes.js')
+app.use("/maps", mapRoutes)
+
 app.listen(3000)

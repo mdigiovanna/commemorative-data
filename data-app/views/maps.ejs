@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+
+<body>
+    <main>
+        <% allParks.forEach(park => {%>
+        <h3><%= park %></h3>
+            <article>
+                <div style="display: inline-block; position:relative; text-align:center">
+                    <img src='./<%= park %>.jpg' alt="<%= park %> Map">
+                    <% byPark.all(park).forEach (bench => {%>
+                        <a href="/bench/<%= bench.id %>">
+                            <div
+                            style="width: 50px;
+                            height: 50px;
+                            background-color: white;
+                            border-radius: 50%;
+                            border: 3px solid black;
+                            left: <%= bench.x -25%>px;
+                            top: <%= bench.y -25%>px;
+                            position: absolute;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center">
+                            <p style="color:black; font-weight: 700;"> <%= bench.benchnum %> </p>
+                            </div>
+
+                        <% if (! bench.available) { %>
+                            <div 
+                            style="width:45;
+                            height:8;
+                            content:'';
+                            background-color: red;
+                            opacity: 60%;
+                            transform: rotate(45deg);
+                            left: <%= bench.x -23%>;
+                            top: <%= bench.y -4%>;
+                            position: absolute">
+                            </div>
+                            
+                            <div 
+                            style="width:45;
+                            height:8;
+                            content:'';
+                            background-color: red;
+                            opacity: 60%;
+                            transform: rotate(-45deg);
+                            left: <%= bench.x -23%>;
+                            top: <%= bench.y -4%>;
+                            position: absolute">
+                            </div>
+                        <% } %>
+                        </a>
+                    <%})%>
+                </div>
+
+            </article>
+        <%})%>
+    </main>
+</body>
+</html>
