@@ -2,29 +2,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Benches Database</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<script>
-    function showMap () {
-        document.getElementById
-    }
-</script>
 <body>
     <header>
-        <h1>Add A Bench</h1>
-        <nav>
-            <a href="#">Add entry</a>
+        <nav class="nav-links">
+            <img src="https://pittsburghparks.org/wp-content/uploads/2020/09/PPC-Logo_Horizontal_Green_RGB.png" class="logo">
+            <div style="display: flex; gap: 0rem;">
+            <a href="/">Home</a>
+            <a class="current" href="/entry">Add Bench</a>
+            <a href="/maps">View Maps</a>
+            <a href="/addmap">Add Map</a>
+            <a href="/userguide">User Guide</a>
+            </div>
         </nav>
     </header>
 
     <main>
-        <form href="/entry" method="POST">
+        <form href="/entry" method="POST" class="form">
         <% errors.forEach(error => { %>
             <p class="notice"><%= error %></p>
         <% })%>
             <fieldset>
-                <legend>Add Bench</legend>
 
                 <label for="benchnum"><small>Bench Number</small></label>
                 <input type="number" id="benchnum" name="benchnum" autocomplete="off">
@@ -82,14 +83,8 @@
                 <label for="notes"><small>Notes</small></label>
                 <input type="text" id="notes" name="notes" autocomplete="off">
 
-                <label for="x"><small>X</small></label>
-                <input type="number" id="x" name="x" min="0" max="1000" step="1">
-
-                <label for="y"><small>Y</small></label>
-                <input type="number" id="y" name="y" min="0" max="1000" step="1">
-
                 <br />
-                <button>Submit</button> <a href="/">Cancel</a>
+                <button>Submit</button>
             </fieldset>
         </form>
     </main>

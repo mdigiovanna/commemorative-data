@@ -2,9 +2,9 @@ const express = require("express")
 const db = require("better-sqlite3")("benches.db")
 exports.db = db
 db.pragma("journal_mode = WAL")
-const createTables = require('./createTables.js')
+const { createTables } = require('./createTables.js')
 
-createTables
+createTables();
 
 const app = express()
 
@@ -32,5 +32,11 @@ app.use("/bench", benchRoutes)
 
 const mapRoutes = require('./routes/mapRoutes.js')
 app.use("/maps", mapRoutes)
+
+const mapEntryRoutes = require('./routes/mapEntryRoutes.js')
+app.use("/addmap", mapEntryRoutes)
+
+const userGuideRoutes = require('./routes/userGuideRoutes.js')
+app.use("/userguide", userGuideRoutes)
 
 app.listen(3000)

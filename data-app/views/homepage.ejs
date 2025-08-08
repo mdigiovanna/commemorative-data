@@ -2,15 +2,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Benches Database</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header>
-        <h1>Commemorative Benches Database</h1>
-        <nav>
+        <nav class="nav-links">
+            <img src="https://pittsburghparks.org/wp-content/uploads/2020/09/PPC-Logo_Horizontal_Green_RGB.png" class="logo">
+            <div style="display: flex; gap: 0rem;">
+            <a class="current" href="/">Home</a>
             <a href="/entry">Add Bench</a>
             <a href="/maps">View Maps</a>
+            <a href="/addmap">Add Map</a>
+            <a href="/userguide">User Guide</a>
+            </div>
         </nav>
     </header>
 
@@ -24,28 +30,9 @@
     <main>
         <% allParks.forEach(park => {%>
         <h3><%= park %></h3>
-            <article>      
-<!--     
-                <div style="display: inline-block; position:relative; text-align:center">
-                    <img src='./<%= park %>.jpg' alt="<%= park %> Map">
-                    <% byPark.all(park).forEach (bench => {%>
-                        <a href="/bench/<%= bench.id %>">
-                            <div
-                            style="width: 0;
-                            height: 0;
-                            border-left: 10px solid transparent;
-                            border-right: 10px solid transparent;
-                            border-bottom: 20px solid #d12e2e;
-                            left: <%= bench.x -10%>;
-                            top: <%= bench.y -10%>;
-                            position: absolute"
-                        ></div
-                        ></a>
-                    <%})%>
-                </div>
--->
+            <article class="homepage-section">      
 
-                <ul>
+                <ul class="homepage-list">
                     <% byPark.all(park).forEach (bench => {%>
                     <li><a href="/bench/<%= bench.id %>"><%= bench.park %> #<%= bench.benchnum %></a></li>
                     <%})%>

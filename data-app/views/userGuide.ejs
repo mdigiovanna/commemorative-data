@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benches Database</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-links">
+            <img src="https://pittsburghparks.org/wp-content/uploads/2020/09/PPC-Logo_Horizontal_Green_RGB.png" class="logo">
+            <div style="display: flex; gap: 0rem;">
+            <a href="/">Home</a>
+            <a href="/entry">Add Bench</a>
+            <a href="/maps">View Maps</a>
+            <a href="/addmap">Add Map</a>
+            <a class="current" href="/userguide">User Guide</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h3>About</h3>
+        <fieldset>
+            Detailing the application, overview of uses
+            <br><br>
+            More information
+        </fieldset>
+
+        <h3>Map Features</h3>
+        <fieldset>
+            <legend>Adding New Maps</legend>
+            Each map must be uploaded as a png image. Once the image is uploaded, it will appear on the 'View Maps' page, 
+            where already existing benches can then be plotted onto the map. Each image will standardize to a maximum width 
+            of 850px while maintaining the original proportions. If the image does not fill the entire width of the page, it 
+            is likely too small and should be replaced by a larger image.
+        </fieldset>
+        <fieldset>
+            <legend>Plotting Benches</legend>
+            Benches must have already been added to the database using the 'Add Bench' page before they can be plotted on
+            a map. Each map will have it's own form underneath it through which you can plot pre-existing benches. First, select
+            from the dropdown menu which bench you would like to plot. Then, insert the X and Y coordinates to place the bench on
+            the map. X and Y coordinates are taken as pixels, with (0, 0) being the top left and each map being 850px wide for 
+            reference. If the placement of the bench is off after mapping, you can remap the same bench with new coordinates and it 
+            will updated. Benches will appear as a circle containing the bench's corresponding number within its park. If the bench 
+            is unavailable for purchase, it will show with a red X through it. When benches are purchased and updated in the app, 
+            the maps will automatically reflect this.
+        </fieldset>
+
+        <h3>The Codebase</h3>
+        <fieldset>
+            <legend>Configuration</legend>
+        </fieldset>
+    </main>
+
+    <footer>
+        <small>Pittsburgh Parks</small>
+    </footer>
+</body>
+</html>

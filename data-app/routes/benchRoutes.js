@@ -23,4 +23,11 @@ router.post("/delete/:id", (req, res) => {
     return res.redirect("/")
 })
 
+router.post("/edit", (req, res) => {
+    const statement = db.prepare("UPDATE benches SET mapid = ?, x = ?, y = ? WHERE id = ?")
+    statement.run(req.body.mapid, req.body.x, req.body.y, req.body.bench)
+
+    return res.redirect("/maps")
+})
+
 module.exports = router

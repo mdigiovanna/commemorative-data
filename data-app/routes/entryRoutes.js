@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
     }
     else {
         const addBench = db.prepare("INSERT INTO benches (id, benchnum, available, park, imoiho, honoree, donor, constid, inscription, giftamt, giftdate, infull, notes, x, y) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
-        addBench.run(req.body.id, req.body.benchnum, req.body.available, req.body.park, req.body.imoiho, req.body.honoree, req.body.donor, req.body.constid, req.body.inscription, req.body.giftamt, req.body.giftdate, req.body.infull, req.body.notes, req.body.x, req.body.y)
+        addBench.run(req.body.id, req.body.benchnum, req.body.available, req.body.park, req.body.imoiho, req.body.honoree, req.body.donor, req.body.constid, req.body.inscription, req.body.giftamt, req.body.giftdate, req.body.infull, req.body.notes, 0, 0)
     }
     return res.redirect("/")
 })

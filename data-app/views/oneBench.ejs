@@ -2,12 +2,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Benches Database</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
+    <header>
+        <h2><%= bench.park %> #<%= bench.benchnum %></h2>
+    </header>
     <main>
-        <h1><%= bench.park %> #<%= bench.benchnum %></h2>
             <article>
                 <b>Availability:</b>
                 <% if(bench.available === 1){ %>
@@ -36,11 +40,11 @@
                         </article>
                     <br> <small>Bought on <%= bench.giftdate %> for $<%= bench.giftamt %></small>
                 <% } %>
-                <br> Located at <%= bench.x %>, <%= bench.y %>
             </article>
             
-            <form action="/bench/delete/<%= bench.id %>" method="POST">
+            <form action="/bench/delete/<%= bench.id %>" method="POST" class="form">
                 <button>Delete Bench</button>
+                <a href="/">Home</a>
             </form>
     </main>
 </body>

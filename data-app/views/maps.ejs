@@ -2,18 +2,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Benches Database</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
+    <header>
+        <nav class="nav-links">
+            <img src="https://pittsburghparks.org/wp-content/uploads/2020/09/PPC-Logo_Horizontal_Green_RGB.png" class="logo">
+            <div style="display: flex; gap: 0rem;">
+            <a href="/">Home</a>
+            <a href="/entry">Add Bench</a>
+            <a class="current" href="/maps">View Maps</a>
+            <a href="/addmap">Add Map</a>
+            <a href="/userguide">User Guide</a>
+            </div>
+        </nav>
+    </header>
+
     <main>
-        <% allParks.forEach(park => {%>
-        <h3><%= park %></h3>
-            <article>
-                <div style="display: inline-block; position:relative; text-align:center">
-                    <img src='./<%= park %>.jpg' alt="<%= park %> Map">
-                    <% byPark.all(park).forEach (bench => {%>
+        <% allMaps.all().forEach(map => {%>
+        <h3><%= map.name %></h3>
+        <section class="map-card">
+                <div style="display: inline-block; position:relative; text-align:center;">
+                    <img src='/maps/image/<%= map.id %>' alt="<%= map.name %> Map" class="map-image">
+                    <% byMap.all(map.id).forEach (bench => {%>
                         <a href="/bench/<%= bench.id %>">
                             <div
                             style="width: 50px;
@@ -58,9 +72,44 @@
                         </a>
                     <%})%>
                 </div>
+            <form action="/bench/edit" method="POST" class="form">
+                <fieldset style="display:flex; justify-content: space-between;"">
 
-            </article>
+                    <input type="hidden" name="mapid" value="<%= map.id %>">
+
+                    <div style="display: flex; gap: 2rem;">
+                    <div style="display: inline-block">
+                        <label for="bench">Bench:</label>
+                        <select id="bench" name="bench">
+                        <% allBenches.all().forEach(bench => {%>
+                            <option value="<%= bench.id %>"><%= bench.park %> #<%= bench.benchnum %></option>
+                        <%})%>
+                        </select>
+                    </div>
+                    
+                    <div style="display: inline-block">
+                        <label for="x">X:</label>
+                        <input type="number" id="x" name="x" min="0" max="1000" step="1">
+                    </div>
+
+                    <div style="display: inline-block">
+                        <label for="y">Y:</label>
+                        <input type="number" id="y" name="y" min="0" max="1000" step="1">
+                    </div>
+                    </div>
+
+                    <div>
+                        <br>
+                        <button type="submit">Add</button>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
         <%})%>
     </main>
+
+    <footer>
+        <small>Pittsburgh Parks</small>
+    </footer>
 </body>
 </html>
