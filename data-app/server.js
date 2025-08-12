@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
     const byPark = db.prepare("SELECT * FROM benches WHERE park = ?")
-    const allParks = ['Allegheney Commons', 'Cliffside', 'FEC', 'Flagstaff', 'Frick', 'Highland', 'Mellon', 'Riverview', 'Schenley']
+    const allParks = ['Allegheny Commons', 'Cliffside', 'FEC', 'Flagstaff', 'Frick', 'Highland', 'Mellon', 'Riverview', 'Schenley']
     
     res.render("homepage", { allParks, byPark })
 })

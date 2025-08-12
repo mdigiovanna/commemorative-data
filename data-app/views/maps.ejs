@@ -26,7 +26,7 @@
         <h3><%= map.name %></h3>
         <section class="map-card">
                 <div style="display: inline-block; position:relative; text-align:center;">
-                    <img src='/maps/image/<%= map.id %>' alt="<%= map.name %> Map" class="map-image">
+                    <img src='/maps/image/<%= map.id %>' alt="<%= map.name %> Map" class="map-image" id="mapImage-<%= map.id %>">
                     <% byMap.all(map.id).forEach (bench => {%>
                         <a href="/bench/<%= bench.id %>">
                             <div
@@ -70,6 +70,11 @@
                             </div>
                         <% } %>
                         </a>
+                        <div 
+                            id="pinPreview-<%= map.id %>" 
+                            style="width: 20px; height: 20px; background: red; border-radius: 50%;
+                                position: absolute; transform: translate(-50%, -50%); display: none;">
+                        </div>
                     <%})%>
                 </div>
             <form action="/bench/edit" method="POST" class="form">
@@ -88,13 +93,13 @@
                     </div>
                     
                     <div style="display: inline-block">
-                        <label for="x">X:</label>
-                        <input type="number" id="x" name="x" min="0" max="1000" step="1">
+                        <label for="x-<%= map.id %>">X:</label>
+                        <input type="number" id="x-<%= map.id %>" name="x" min="0" max="1000" step="1">
                     </div>
 
                     <div style="display: inline-block">
-                        <label for="y">Y:</label>
-                        <input type="number" id="y" name="y" min="0" max="1000" step="1">
+                        <label for="y-<%= map.id %>">Y:</label>
+                        <input type="number" id="y-<%= map.id %>" name="y" min="0" max="1000" step="1">
                     </div>
                     </div>
 
@@ -102,8 +107,46 @@
                         <br>
                         <button type="submit">Add</button>
                     </div>
-                </fieldset>
-            </form>
+                    </fieldset>
+                </form>
+                <form action="/maps/delete/<%= map.id %>" method="POST" class="del-form" onsubmit="return confirm('Are you sure you want to delete this map?');">
+                    <button>Delete <%= map.name %></button>
+                </form>
+
+            <script>
+                (() => {
+                  const img = document.getElementById("mapImage-<%= map.id %>");
+                  const pin = document.getElementById("pinPreview-<%= map.id %>");
+                  const xInput = document.getElementById("x-<%= map.id %>");
+                  const yInput = document.getElementById("y-<%= map.id %>");
+              
+                  // Click to set coordinates
+                  img.addEventListener("click", (e) => {
+                    const rect = img.getBoundingClientRect();
+                    const clickX = (e.clientX - rect.left);
+                    const clickY = (e.clientY - rect.top);
+                    xInput.value = Math.round(clickX);
+                    yInput.value = Math.round(clickY);
+                    updatePin();
+                  });
+              
+                  // Update pin when inputs change
+                  const updatePin = () => {
+                    const x = parseInt(xInput.value);
+                    const y = parseInt(yInput.value);
+                    if (!isNaN(x) && !isNaN(y)) {
+                      pin.style.left = `${x}px`;
+                      pin.style.top = `${y}px`;
+                      pin.style.display = "block";
+                    } else {
+                      pin.style.display = "none";
+                    }
+                  };
+              
+                  xInput.addEventListener("input", updatePin);
+                  yInput.addEventListener("input", updatePin);
+                })();
+            </script>
         </section>
         <%})%>
     </main>

@@ -9,7 +9,11 @@
 
 <body>
     <header>
-        <h2><%= bench.park %> #<%= bench.benchnum %></h2>
+        <nav class="one-bench">
+        <a href="/" class="left">Home</a>
+        <h2 class="center"><%= bench.park %> #<%= bench.benchnum %></h2>
+        <a href="/maps" class="right">Maps</a>
+        </nav>
     </header>
     <main>
             <article>
@@ -38,13 +42,13 @@
                     <br><b>Notes:</b><article>
                             <%= bench.notes %>
                         </article>
-                    <br> <small>Bought on <%= bench.giftdate %> for $<%= bench.giftamt %></small>
+                    <br> <small>Bought on <%= bench.giftdate %> for $<%= bench.giftamt %>. <% if(bench.infull === 1){ %>Paid in full.<%} else {%>Not paid in full.<%}%> </small>
                 <% } %>
             </article>
-            
-            <form action="/bench/delete/<%= bench.id %>" method="POST" class="form">
+
+            <form action="/bench/delete/<%= bench.id %>" method="POST" class="form" onsubmit="return confirm('Are you sure you want to delete this bench?');">
+                <a href="/entry/edit-bench/<%= bench.id %>">Edit Bench</a>
                 <button>Delete Bench</button>
-                <a href="/">Home</a>
             </form>
     </main>
 </body>

@@ -21,6 +21,18 @@ router.get("/image/:id", (req, res) => {
     } else {
         res.status(404).send("Image not found.");
     }
-});
+})
+
+router.post("/delete/:id", (req, res) => {
+    const resetbenches = db.prepare("UPDATE benches SET mapid = ?, x = ?, y = ? WHERE mapid = ?")
+    const delmap = db.prepare("DELETE FROM maps WHERE id = ?")
+
+    resetbenches.run(0, 0, 0, req.params.id)
+    delmap.run(req.params.id)
+
+    // Send back to map page after deleting the map and resetting benches
+    
+    return res.redirect("/maps")
+})
 
 module.exports = router;

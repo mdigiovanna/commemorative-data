@@ -73,23 +73,41 @@
   .nav-links a, .nav-links img {
     display: flex;                
     align-items: center;       
-    padding: 0.5rem 1rem;
     height: 60px;
   }
 
-  .nav-links a {
+  .nav-links a, .one-bench a {
     font-size: 16; 
-    padding: 0rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     background-color: var(--green);
     border-color: var(--green) !important;
     color: var(--white) !important;
     margin: 10px;
   }
 
-  .nav-links a:hover, .nav-links a.current {
+  .nav-links a:hover, .nav-links a.current, .one-bench a:hover {
     color: white !important;
     background-color: var(--orange);
     border-color: var(--orange) !important;
+  }
+
+  .one-bench {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .one-bench .center {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .one-bench .left,
+  .one-bench .right {
+    width: 100px;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    padding: 0.5rem;
   }
 
   /* -------------------------------
@@ -121,20 +139,6 @@
     border-radius: var(--border-radius);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
-  }
-  
-  .button-primary {
-    background-color: var(--green);
-    color: white;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: var(--border-radius);
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .button-primary:hover {
-    background-color: #0f5ed7;
   }
   
   /* Card container layout */
@@ -196,10 +200,17 @@
     border: 1px solid black;
   }
 
-  .form {
+  .form, .del-form {
     display: flex;
+  }
+
+  .form {
     flex-direction: column;
     gap: 0.75rem;
+  }
+
+  .del-form {
+    justify-content: center;
   }
   
   .form input {
@@ -208,18 +219,28 @@
     border: 1px solid #ccc;
   }
   
-  .form button, .form a {
+  .form button, .form a, .button-primary, .del-form button {
+    display: inline-block;
     align-self: start;
     padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font: inherit;
+    line-height: 1.2;
+  }
+
+  .form button, .form a, .button-primary {
     background-color: var(--green);
     color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none
+  }
+
+  .del-form button {
+    background-color: var(--grey);
   }
   
-  .form button:hover, .form a:hover {
+  .form button:hover, .form a:hover, .button-primary:hover, .del-form button:hover {
     background-color: var(--orange);
   }  
   

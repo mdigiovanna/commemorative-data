@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benches Database</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="one-bench">
+        <a href="/" class="left">Home</a>
+        <h2 class="center"><%= bench.park %> #<%= bench.benchnum %></h2>
+        <div class="right"></div>
+        </nav>
+    </header>
+
+    <main>
+        <form href="/entry" method="POST" class="form">
+        <% errors.forEach(error => { %>
+            <p class="notice"><%= error %></p>
+        <% })%>
+            <fieldset>
+
+                <label for="benchnum"><small>Bench Number</small></label>
+                <input type="number" id="benchnum" name="benchnum" value="<%= bench.benchnum %>">
+
+                <label for="available"><small>Available?</small></label>
+                <select id="available" name="available">
+                    <option value="1" <%= bench.available ? "selected" : "" %>>Yes</option>
+                    <option value="0" <%= !bench.available ? "selected" : "" %>>No</option>
+                </select>
+
+                <label for="park"><small>Park</small></label>
+                <select id="park" name="park">
+                    <% 
+                        const parks = [
+                        "Frick",
+                        "Allegheny Commons",
+                        "Schenley",
+                        "Mellon Park",
+                        "Cliffside",
+                        "Highland",
+                        "Riverview",
+                        "FEC",
+                        "Flagstaff"
+                        ];
+                        
+                        parks.forEach(parkName => { 
+                    %>
+                    <option value="<%= parkName %>" <%= bench.park === parkName ? "selected" : "" %>>
+                        <%= parkName %>
+                      </option>
+                    <% }) %>
+                </select>
+
+                <label for="imoiho"><small>IMO or IHO</small></label>
+                <select id="imoiho" name="imoiho" value="<%= bench.imoiho %>">
+                    <option value="none">None</option>
+                    <option value="imo" <%= bench.imoiho === "imo" ? "selected" : "" %>>IMO</option>
+                    <option value="iho" <%= bench.imoiho === "iho" ? "selected" : "" %>>IHO</option>
+                </select>
+
+                <label for="honoree"><small>Honoree's Name</small></label>
+                <input type="text" id="honoree" name="honoree" value="<%= bench.honoree %>">
+
+                <label for="donor"><small>Donated By</small></label>
+                <input type="text" id="donor" name="donor" value="<%= bench.donor %>">
+
+                <label for="constid"><small>Donor's Constituent ID</small></label>
+                <input type="number" id="constid" name="constid" value="<%= bench.constid %>">
+
+                <label for="inscription"><small>Inscription</small></label>
+                <input type="text" id="inscription" name="inscription" value="<%= bench.inscription %>">
+
+                <label for="giftamt"><small>Gift Amount</small></label>
+                <input type="number" id="giftamt" name="giftamt" min="0" max ="1000000000" step="0.01" value="<%= bench.giftamt %>">
+
+                <label for="giftdate"><small>Gift Date</small></label>
+                <input type="date" id="giftdate" name="giftdate" value="<%= bench.giftdate %>">
+
+                <label for="infull"><small>Paid in full?</small></label>
+                <select id="infull" name="infull" value="<%= bench.infull %>">
+                    <option value="1" <%= bench.infull ? "selected" : "" %>>Yes</option>
+                    <option value="0" <%= !bench.infull ? "selected" : "" %>>No</option>
+                </select>
+
+                <label for="notes"><small>Notes</small></label>
+                <textarea id="notes" name="notes"><%= bench.notes %></textarea>
+
+                <br />
+                <button>Save Changes</button>
+            </fieldset>
+        </form>
+    </main>
+
+    <footer>
+        <small>Pittsburgh Parks</small>
+    </footer>
+</body>
+</html>
