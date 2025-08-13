@@ -23,16 +23,28 @@
     <main>
         <h3>About</h3>
         <fieldset>
-            Detailing the application, overview of uses
-            <br><br>
-            More information
+            This application was developed for the Pittsburgh Parks Conservancy to easily store commemorative benches in one
+            database, with maps to visualize each park and its corresponding benches. Maps can be created from png files on which
+            benches can be plotted and updated to visualize their availability for purchase.
+        </fieldset>
+
+        <h3>Benches</h3>
+        <fieldset>
+            Benches can easily be added into the database using the "Add Bench" page, where you will be prompted to add the main
+            information regarding each bench. Once a bench is added to the database via this form, you can only access the bench through
+            the homepage, where each bench is sorted by its corresponding park. By clicking on the bench on the homepage, you will be able
+            to view all of its information. Note that information such as the Donor, Honoree, Payment Details, and Gift Date will not
+            be displayed for benches that have not been purchased. Once you are viewing a singular bench's page, you can easily use the "Edit Bench"
+            button to update any of the bench's information and save these changes. Benches can also be accessed through the "View Maps"
+            page once they have already been plotted to a map. See below for how to create maps and plot benches.
         </fieldset>
 
         <h3>Map Features</h3>
         <fieldset>
             <legend>Adding New Maps</legend>
-            Each map must be uploaded as a png image. Once the image is uploaded, it will appear on the 'View Maps' page, 
-            where already existing benches can then be plotted onto the map. Each image will standardize to a maximum width 
+            Maps can be added on the "Add Map" page. Simply give the map a title, and upload an image of the blank map on which you would
+            like to plot the benches. Each map must be uploaded as a png image. Once the image is uploaded, it will appear on the 
+            'View Maps' page, where already existing benches can then be plotted onto the map. Each image will standardize to a maximum width 
             of 850px while maintaining the original proportions. If the image does not fill the entire width of the page, it 
             is likely too small and should be replaced by a larger image.
         </fieldset>
@@ -40,17 +52,24 @@
             <legend>Plotting Benches</legend>
             Benches must have already been added to the database using the 'Add Bench' page before they can be plotted on
             a map. Each map will have it's own form underneath it through which you can plot pre-existing benches. First, select
-            from the dropdown menu which bench you would like to plot. Then, insert the X and Y coordinates to place the bench on
-            the map. X and Y coordinates are taken as pixels, with (0, 0) being the top left and each map being 850px wide for 
-            reference. If the placement of the bench is off after mapping, you can remap the same bench with new coordinates and it 
-            will updated. Benches will appear as a circle containing the bench's corresponding number within its park. If the bench 
-            is unavailable for purchase, it will show with a red X through it. When benches are purchased and updated in the app, 
-            the maps will automatically reflect this.
+            from the dropdown menu which bench you would like to plot. Then, click on the map to select where you would like the
+            bench to be placed. A red dot will preview the coordinates selected, so please adjust as needed before clicking the
+            "Add" button to finalize. Benches will appear as a circle containing the bench's corresponding number within its park. 
+            If the bench  is unavailable for purchase, it will show with a red X through it. When benches are purchased and updated 
+            in the app, the maps will automatically reflect this. Each bench can be plotted to exactly 1 map, and will appear only 
+            on the map it was most recently plotted to. If a map is deleted, all corresponding benches will appear just the same on
+            the homepage, but will no longer have a corresponding map.
         </fieldset>
 
         <h3>The Codebase</h3>
         <fieldset>
-            <legend>Configuration</legend>
+            This application was built using Node.js and Express, and runs on a SQLite database. There is a main 'server.js' file which
+            sets up the configuration for the application, and establishes different file routes for certain commands, such as adding and
+            editing benches, adding and editing maps, or navigating to different pages. Each of these functions comes with its own .js file
+            located in the 'routes' folder. These create the REST APIs for each possible endpoint which can affect the database. They tell
+            the application which HTML files to load and what effect to have on the database based on the command that is given. Each button
+            on every page has a corresponding path which the backend specifies through these route files, telling the application which data 
+            to create, read, update or delete, and then which page to load next as a response.
         </fieldset>
     </main>
 
